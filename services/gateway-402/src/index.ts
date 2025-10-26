@@ -3,9 +3,8 @@ import helmet from "helmet";
 import cors from "cors";
 import morgan from "morgan";
 import { PrismaClient } from "@prisma/client";
-import { X402Quote, sha256, verifyUSDC, verifySOL } from "@pandorax402/shared";
+import { X402Quote, sha256, verifyUSDC, verifySOL, z } from "@pandorax402/shared";
 import { PublicKey } from "@solana/web3.js";
-import { z } from "zod";
 import fetch from "node-fetch";
 import { debugRouter } from "./debug.js";
 
@@ -98,7 +97,8 @@ app.post("/x402/verify", async (req, res) => {
 
 app.post("/x402/proxy", async (req, res) => {
   const { signature, quote, forward } = req.body as { signature: string; quote: X402Quote; forward: { method: string; url: string; body?: any; headers?: any } };
-  const v = await fetch(`http://localhost:4000/x402/verify`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ signature, quote }) });
+  const gatewayBase = process.env.GATEWAY_BASE || "http://localhost:4000";
+  const v = await fetch(`${gatewayBase}/x402/verify`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ signature, quote }) });
   const ok = v.status === 200;
   if (!ok) {
     const body = await v.json().catch(() => ({}));
@@ -115,4 +115,6 @@ app.post("/x402/proxy", async (req, res) => {
 
 app.use(debugRouter);
 app.get("/healthz", (_req, res) => res.json({ ok: true }));
-app.listen(process.env.PORT || 4000, () => console.log("gateway-402 listening on :4000"));
+
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log(`gateway-402 listening on :${PORT}`));

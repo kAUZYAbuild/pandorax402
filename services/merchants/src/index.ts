@@ -1,10 +1,11 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import morgan from "morgan";
+
 const app = express();
 app.use(express.json());
 app.use(morgan("tiny"));
 
-app.get("/food/menu", (_req, res) => {
+app.get("/food/menu", (_req: Request, res: Response) => {
   res.json({
     restaurant: "Validator Bistro",
     items: [
@@ -14,8 +15,9 @@ app.get("/food/menu", (_req, res) => {
   });
 });
 
-app.get("/tools/linter", (_req, res) => {
+app.get("/tools/linter", (_req: Request, res: Response) => {
   res.json({ tool: "Super Linter", plan: "per-run", success: true });
 });
 
-app.listen(4002, () => console.log("merchants on :4002"));
+const PORT = process.env.PORT || 4002;
+app.listen(PORT, () => console.log(`merchants on :${PORT}`));

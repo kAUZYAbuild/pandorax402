@@ -6,10 +6,18 @@ export default function Home() {
   const [messages, setMessages] = useState<any[]>([]);
   useEffect(() => {
     const t = setInterval(async () => {
-      const p = await fetch("http://localhost:4000/_debug/payments").then(r => r.json()).catch(()=>({payments:[]}));
-      const j = await fetch("http://localhost:4001/tasks").then(r => r.json()).catch(()=>({tasks:[]}));
-      const m = await fetch("http://localhost:4015/latest").then(r => r.json()).catch(()=>({messages:[]}));
-      setPayments(p.payments || []); setTasks(j.tasks || []); setMessages(m.messages || []);
+      try {
+        const [p, j, m] = await Promise.allSettled([
+          fetch("http://localhost:4000/_debug/payments").then(r => r.json()).catch(()=>({payments:[]})),
+          fetch("http://localhost:4001/tasks").then(r => r.json()).catch(()=>({tasks:[]})),
+          fetch("http://localhost:4015/latest").then(r => r.json()).catch(()=>({messages:[]}))
+        ]);
+        if (p.status === 'fulfilled') setPayments(p.value.payments || []);
+        if (j.status === 'fulfilled') setTasks(j.value.tasks || []);
+        if (m.status === 'fulfilled') setMessages(m.value.messages || []);
+      } catch (error) {
+        console.error("Dashboard fetch error:", error);
+      }
     }, 1500);
     return () => clearInterval(t);
   }, []);

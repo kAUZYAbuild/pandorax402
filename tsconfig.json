@@ -4,6 +4,13 @@
     "module": "ES2022",
     "moduleResolution": "Bundler",
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "allowJs": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true
   }
 }

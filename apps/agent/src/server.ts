@@ -30,4 +30,5 @@ app.post("/pay", async (req, res) => {
   }
 });
 
-app.listen(4010, () => console.log(`agent pay-server on :4010`));
+const PORT = process.env.PORT || 4010;
+app.listen(PORT, () => console.log(`agent pay-server on :${PORT}`));

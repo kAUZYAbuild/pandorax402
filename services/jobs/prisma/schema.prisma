@@ -1,12 +1,18 @@
-generator client { provider = "prisma-client-js" }
-datasource db { provider = "postgresql"; url = env("DATABASE_URL") }
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
 
 model Task {
   id          String   @id @default(cuid())
   title       String
   description String
-  wageBase    String
-  status      String   @default("open")
+  wageBase    String   // base units (USDC 6dp)
+  status      String   @default("open") // open/claimed/completed
   claimedBy   String?
   wageTx      String?
   createdAt   DateTime @default(now())
