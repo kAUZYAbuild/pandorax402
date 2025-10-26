@@ -1,0 +1,27 @@
+{
+  "name": "gateway-402",
+  "version": "0.2.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "prisma": "prisma",
+    "migrate": "prisma migrate dev --name init",
+    "postinstall": "prisma generate"
+  },
+  "dependencies": {
+    "@pandorax402/shared": "0.2.0",
+    "@prisma/client": "^5.18.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
+    "zod": "^3.23.8",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "prisma": "^5.18.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

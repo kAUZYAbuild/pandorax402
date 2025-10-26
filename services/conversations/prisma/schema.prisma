@@ -1,0 +1,12 @@
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "postgresql"; url = env("DATABASE_URL") }
+
+model Message {
+  id        String   @id @default(cuid())
+  role      String
+  text      String
+  meta      Json?
+  createdAt DateTime @default(now())
+  convoId   String
+  scenario  String
+}

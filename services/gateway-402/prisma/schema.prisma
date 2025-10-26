@@ -1,0 +1,30 @@
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "postgresql"; url = env("DATABASE_URL") }
+
+model ConsumedSignature {
+  signature String
+  resource  String
+  createdAt DateTime @default(now())
+  @@id([signature, resource])
+}
+
+model Payment {
+  id            String   @id @default(cuid())
+  signature     String   @unique
+  currency      String
+  amountBase    String
+  payTo         String
+  resource      String
+  quote         Json
+  verifiedAt    DateTime
+  createdAt     DateTime @default(now())
+}
+
+model Receipt {
+  id            String   @id @default(cuid())
+  signature     String
+  resource      String
+  receiptHash   String   @unique
+  payload       Json
+  createdAt     DateTime @default(now())
+}

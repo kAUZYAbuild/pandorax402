@@ -1,0 +1,17 @@
+{
+  "name": "agent",
+  "version": "0.2.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "server": "tsx src/server.ts"
+  },
+  "dependencies": {
+    "@pandorax402/shared": "0.2.0",
+    "node-fetch": "^3.3.2",
+    "express":"^4.19.2",
+    "cors":"^2.8.5",
+    "morgan":"^1.10.0"
+  },
+  "devDependencies": { "tsx": "^4.19.2", "typescript": "^5.6.3" }
+}
