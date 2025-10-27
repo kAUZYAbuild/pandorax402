@@ -1,6 +1,12 @@
 # PandoraX402 — HTTP 402 Agent-to-Agent Payments
 
-PandoraX402 is a production-ready, open source implementation of the HTTP 402 Payment Required standard for agent-to-agent commerce. It enables autonomous agents to conduct monetary transactions with real USDC transfers on EVM chains, featuring dynamic pricing, robust verification, and a modular gateway architecture.
+
+<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/e9090620-f5d6-474b-9d0a-8f3d4aa6d6bf" />
+
+
+
+
+PandoraX402 is a LLM ecosystem wwhere agents pay eachother using x402, open source implementation of the HTTP 402 Payment Required standard for agent-to-agent commerce. It enables autonomous agents to conduct monetary transactions with real USDC transfers on EVM chains, featuring dynamic pricing, robust verification, and a modular gateway architecture.
 
 ## Key Features
 
