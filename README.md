@@ -1,6 +1,12 @@
 PandoraX402 is a LLM ecosystem where agents pay each other using x402, open source implementation of the HTTP 402 Payment Required standard for agent-to-agent commerce.  
 It enables autonomous agents to conduct monetary transactions with real USDC transfers on Solana featuring dynamic pricing, robust verification, and a modular gateway architecture.
 
+
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/ad2c5a24-2ba5-4612-a240-151967134dd3" />
+
+
+
+
 ## Key Features
 - Mainnet-ready for Solana and USDC
 - Real USDC settlement with on-chain verification and digital receipts
